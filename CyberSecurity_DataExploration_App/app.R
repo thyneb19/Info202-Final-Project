@@ -36,7 +36,7 @@ ui <- fluidPage(
 server <- function(input, output) {
    
    output$distPlot <- renderPlot({
-      
+      ggplot(breaches, aes(x = Sector, y = Records_Lost)) + geom_boxplot()
    })
 }
 
