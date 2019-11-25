@@ -9,7 +9,7 @@
 
 library(shiny)
 library(ggplot2)
-breaches <- readRDS("C:/Users/thyne/Documents/GitHub/Info202-Final-Project/CyberSecurity_DataExploration_App/data/Breach_Data.RDS")
+breaches <- readRDS("C:/Users/thyne/Documents/GitHub/Info202-Final-Project/CyberSecurity_DataExploration_App/data/cleanedBreachData.RDS")
 
 
 # Define UI for application that draws a histogram
@@ -36,7 +36,7 @@ ui <- fluidPage(
 server <- function(input, output) {
    
    output$distPlot <- renderPlot({
-      ggplot(breaches, aes(x = Sector, y = Records_Lost)) + geom_boxplot()
+     ggplot(data2, aes(x = Sector, y = Records_Lost, fill = Method)) + geom_bar(stat='identity')
    })
 }
 
