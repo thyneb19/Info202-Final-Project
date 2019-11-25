@@ -9,8 +9,7 @@
 
 library(shiny)
 library(ggplot2)
-breaches <- readRDS("C:/Users/thyne/Documents/GitHub/Info202-Final-Project/CyberSecurity_DataExploration_App/data/Breach_Data.RDS")
-
+breaches <- readRDS("/Users/arikaverma/Documents/GitHub/Info202-Final-Project/CyberSecurity_DataExploration_App/data/Breach_Data.RDS")
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
