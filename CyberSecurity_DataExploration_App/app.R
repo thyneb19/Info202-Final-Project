@@ -19,7 +19,7 @@ ui <- dashboardPage(
             # First tab content
             tabItem(tabName = "BarChart",
                     fluidRow(
-                        box(plotOutput("plot1", height = 400, width = 1000))
+                        box(plotOutput("plot1", height = 400, width = 1100))
                     )
             ),
             
@@ -32,9 +32,8 @@ ui <- dashboardPage(
                     # Sidebar with a slider input for number of bins 
                     sidebarLayout(
                         sidebarPanel(
-                            checkboxGroupInput("variable", "View By Sector:",
-                                               c("Academic" = "Academic", "Energy" = "Energy","Financial" = "Financial", "Government" = "Government", "Healthcare" = "Healthcare", "Legal" = "Legal", 
-                                                 "Media" = "Media", "Retail" = "Retail", "Tech" = "Tech", "Telecoms" = "Telecoms", "Transport" = "Transport")),
+                          selectInput("variable", "Choose a Sector:", choices = c("Academic" = "Academic", "Energy" = "Energy","Financial" = "Financial", "Government" = "Government", "Healthcare" = "Healthcare", "Legal" = "Legal", 
+                                                                                    "Media" = "Media", "Retail" = "Retail", "Tech" = "Tech", "Telecoms" = "Telecoms", "Transport" = "Transport")),
                         ),
                         
                         # Show a plot of the generated distribution
@@ -57,7 +56,6 @@ server <- function(input, output) {
     output$plot2 <- renderPlot({
         
         if (input$variable == "Academic"){
-            
             newdata <- subset(breaches, breaches$Sector == "academic")
             ggplot(data = newdata, aes(x= Method, y= Records_Lost, fill= Method)) + scale_fill_brewer(palette = "Set2") + geom_boxplot() + labs(x= "Method", y= "Records Lost") + scale_y_continuous(labels = comma)}
         
